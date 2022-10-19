@@ -7,9 +7,9 @@ namespace GLMS.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly RoleManager<IdentityRole<int>> roleManager;
 
-        public AdminController(RoleManager<IdentityRole> roleManager)
+        public AdminController(RoleManager<IdentityRole<int>> roleManager)
         {
             this.roleManager = roleManager;
         }
@@ -30,7 +30,7 @@ namespace GLMS.Controllers
             var roleExist = await roleManager.RoleExistsAsync(role.RoleName);  
             if(!roleExist)
             {
-                var result = await roleManager.CreateAsync(new IdentityRole(role.RoleName));
+                var result = await roleManager.CreateAsync(new IdentityRole<int>(role.RoleName));
             }
             return View();
         }
