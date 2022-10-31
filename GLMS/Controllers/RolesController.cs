@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GLMS.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
+    //[Authorize(Roles = "SuperAdmin")]
     public class RolesController : Controller
     {
         private readonly RoleManager<IdentityRole<int>> _roleManager;
@@ -21,7 +21,6 @@ namespace GLMS.Controllers
             return View(roles);
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddRole(string roleName)
         {
             if (roleName != null)

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GLMS.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
+    //[Authorize(Roles = "SuperAdmin")]
 
     public class PermissionController : Controller
     {
@@ -18,12 +18,12 @@ namespace GLMS.Controllers
         {
             _roleManager = roleManager;
         }
-        public async Task<IActionResult> Index(string roleId)
+        public async Task<IActionResult> Index(int roleId)
         {
             var model = new PermissionViewModel();
             var allPermissions = new List<RoleClaimsViewModel>();
-            allPermissions.GetPermissions(typeof(Permissions.Actions), roleId);
-            var role = await _roleManager.FindByIdAsync(roleId);
+            allPermissions.GetPermissions(typeof(Permissions.Actions), roleId.ToString());
+            var role = await _roleManager.FindByIdAsync(roleId.ToString());
             model.RoleId = roleId;
             var claims = await _roleManager.GetClaimsAsync(role);
             var allClaimValues = allPermissions.Select(a => a.Value).ToList();
@@ -41,7 +41,7 @@ namespace GLMS.Controllers
         }
         public async Task<IActionResult> Update(PermissionViewModel model)
         {
-            var role = await _roleManager.FindByIdAsync(model.RoleId);
+            var role = await _roleManager.FindByIdAsync(model.RoleId.ToString());
             var claims = await _roleManager.GetClaimsAsync(role);
             foreach (var claim in claims)
             {

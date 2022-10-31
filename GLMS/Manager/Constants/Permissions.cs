@@ -14,10 +14,10 @@
         }
         public static class Actions
         {
-            public const string Create = "Permissions.Actions.Create";
-            public const string View = "Permissions.Actions.View";
-            public const string Edit = "Permissions.Actions.Edit";
-            public const string Delete = "Permissions.Actions.Delete";
+            public const string Create = "Create";
+            public const string View = "View";
+            public const string Edit = "Edit";
+            public const string Delete = "Delete";
         }
     }
 }

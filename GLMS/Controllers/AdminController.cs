@@ -8,6 +8,7 @@ namespace GLMS.Controllers
     public class AdminController : Controller
     {
         private readonly RoleManager<IdentityRole<int>> roleManager;
+        private readonly string? result;
 
         public AdminController(RoleManager<IdentityRole<int>> roleManager)
         {
@@ -19,20 +20,15 @@ namespace GLMS.Controllers
             return View();
         }
         [Authorize]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
         [HttpPost]
         public async Task<IActionResult> Create(ProjectRole role)
         {
-            var roleExist = await roleManager.RoleExistsAsync(role.RoleName);  
-            if(!roleExist)
+            var roleExist = await roleManager.RoleExistsAsync(role.RoleName);
+            if (!roleExist)
             {
                 var result = await roleManager.CreateAsync(new IdentityRole<int>(role.RoleName));
             }
-            return View();
+            return View(result);
         }
     }
 }

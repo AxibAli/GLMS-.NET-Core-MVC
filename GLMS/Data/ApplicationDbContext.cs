@@ -17,6 +17,9 @@ namespace GLMS.Data
             base.OnModelCreating(builder);
         }
 
-        public DbSet<GLMS.Models.ProjectRole> ProjectRole { get; set; }
+        public DbSet<ProjectRole> projectRoles { get; set; } = default!;
+        public DbSet<PermissionViewModel> permissions { get; set; }
+        public DbSet<UserRolesViewModel> userRoles { get; set; }
+
     }
 }

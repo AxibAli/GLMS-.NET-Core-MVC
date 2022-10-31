@@ -10,7 +10,7 @@ namespace GLMS.Manager.Seeds
         {
             var defaultUser = new IdentityUser
             {
-                UserName = "BasicUser",
+                UserName = "basicuser@gmail.com",
                 Email = "basicuser@gmail.com",
                 EmailConfirmed = true
             };
@@ -29,7 +29,7 @@ namespace GLMS.Manager.Seeds
         {
             var defaultUser = new IdentityUser
             {
-                UserName = "SuperAdmin",
+                UserName = "superadmin@gmail.com",
                 Email = "superadmin@gmail.com",
                 EmailConfirmed = true 
             };

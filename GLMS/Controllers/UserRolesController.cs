@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GLMS.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
+    //[Authorize(Roles = "SuperAdmin")]
     public class UserRolesController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -18,10 +18,10 @@ namespace GLMS.Controllers
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
-        public async  Task<IActionResult> Index(string userId)
+        public async  Task<IActionResult> Index(int userId)
         {
             var viewModel = new List<UserRolesViewModel>();
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByIdAsync(userId.ToString());
             foreach (var role in _roleManager.Roles.ToList())
             {
                 var userRolesViewModel = new UserRolesViewModel

@@ -51,6 +51,44 @@ namespace GLMS.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "permissions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_permissions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "projectRoles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_projectRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "userRoles",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Selected = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_userRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -96,8 +134,8 @@ namespace GLMS.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -141,8 +179,8 @@ namespace GLMS.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -154,6 +192,26 @@ namespace GLMS.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RoleClaimsViewModel",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Selected = table.Column<bool>(type: "bit", nullable: false),
+                    PermissionViewModelId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoleClaimsViewModel", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RoleClaimsViewModel_permissions_PermissionViewModelId",
+                        column: x => x.PermissionViewModelId,
+                        principalTable: "permissions",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -194,6 +252,11 @@ namespace GLMS.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoleClaimsViewModel_PermissionViewModelId",
+                table: "RoleClaimsViewModel",
+                column: "PermissionViewModelId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -214,10 +277,22 @@ namespace GLMS.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "projectRoles");
+
+            migrationBuilder.DropTable(
+                name: "RoleClaimsViewModel");
+
+            migrationBuilder.DropTable(
+                name: "userRoles");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "permissions");
         }
     }
 }
