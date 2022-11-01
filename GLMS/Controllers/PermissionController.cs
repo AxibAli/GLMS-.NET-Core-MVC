@@ -18,7 +18,7 @@ namespace GLMS.Controllers
         {
             _roleManager = roleManager;
         }
-        public async Task<IActionResult> Index(int roleId)
+        public async Task<IActionResult> Add(int roleId)
         {
             var model = new PermissionViewModel();
             var allPermissions = new List<RoleClaimsViewModel>();

@@ -5,7 +5,7 @@ namespace GLMS.Controllers
     public class ActionsController : Controller
     {
 
-        public IActionResult Index()
+        public IActionResult Action()
         {
             return View();
         }
