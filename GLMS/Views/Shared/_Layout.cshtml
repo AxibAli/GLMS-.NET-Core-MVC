@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser<int>> SignInManager
+@inject UserManager<IdentityUser<int>> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,7 +21,10 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="~/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
 
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    =======
     @*    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    >>>>>>> f305db0910f07b7cfab8b0cc24f935076d8e2071
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/GLMS.styles.css" asp-append-version="true" />*@
 </head>
@@ -62,6 +68,8 @@
                     </a>
                 </li>
             </ul>
+
+
         </div>
     </aside>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -71,34 +79,66 @@
                 <nav aria-label="breadcrumb">
                     <h6 class="font-weight-bolder mb-0">Dashboard</h6>
                 </nav>
-                <ul class="navbar-nav  justify-content-end">
-                    <li class="nav-item d-flex align-items-center">
-                        <a href="../pages/sign-in.html" class="nav-link text-body font-weight-bold px-0">
-                            <i class="fa fa-user me-sm-1"></i>
-                            <span class="d-sm-inline d-none">Sign In</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="container">
-                    <main role="main" class="pb-3">
-                        @RenderBody()
-                    </main>
-                </div>
 
-                <footer class="border-top footer text-muted">
-                    <div class="container">
-                        &copy; 2022 - GLMS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </div>
-                </footer>
-                <script src="~/lib/jquery/dist/jquery.min.js"></script>
-                <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-                <script src="~/js/site.js" asp-append-version="true"></script>
-                <script src="~/js/core/popper.min.js"></script>
-                <script src="~/js/core/bootstrap.min.js"></script>
-                <script src="~/js/plugins/perfect-scrollbar.min.js"></script>
-                <script src="~/js/plugins/smooth-scrollbar.min.js"></script>
-                <script src="~/js/plugins/chartjs.min.js"></script>
-               
-@await RenderSectionAsync("Scripts", required: false)
+                @*<ul class="navbar-nav  justify-content-end">
+                =======
+                <ul class="navbar-nav  justify-content-end">
+                >>>>>>> f305db0910f07b7cfab8b0cc24f935076d8e2071
+                <li class="nav-item d-flex align-items-center">
+                <a href="../pages/sign-in.html" class="nav-link text-body font-weight-bold px-0">
+                <i class="fa fa-user me-sm-1"></i>
+                <span class="d-sm-inline d-none">Sign In</span>
+                </a>
+                </li>
+                <<<<<<< HEAD
+                </ul>*@
+
+                <ul class="navbar-nav  justify-content-end">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link text-body font-weight-bold px-0" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+                        </li>
+
+                        <li class="nav-item d-flex align-items-center">
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link text-body font-weight-bold px-0" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link text-body font-weight-bold px-0" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                        </li>
+                    }
+                </ul>
+        </nav>
+        </ul>
+
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2022 - GLMS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/core/popper.min.js"></script>
+        <script src="~/js/core/bootstrap.min.js"></script>
+        <script src="~/js/plugins/perfect-scrollbar.min.js"></script>
+        <script src="~/js/plugins/smooth-scrollbar.min.js"></script>
+        <script src="~/js/plugins/chartjs.min.js"></script>
+
+        @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
