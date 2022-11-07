@@ -47,11 +47,11 @@ namespace GLMS.Controllers
             {
                 await _roleManager.RemoveClaimAsync(role, claim);
             }
-            var selectedClaims = model.RoleClaims.Where(a => a.Selected).ToList();
-            foreach (var claim in selectedClaims)
-            {
-                await _roleManager.AddPermissionClaim(role, claim.Value);
-            }
+            //var selectedClaims = model.RoleClaims.Where(a => a.Selected).ToList();
+            //foreach (var claim in selectedClaims)
+            //{
+            //    await _roleManager.AddPermissionClaim(role, claim.Value);
+            //}
             return RedirectToAction("Index", new { roleId = model.RoleId });
         }
     }

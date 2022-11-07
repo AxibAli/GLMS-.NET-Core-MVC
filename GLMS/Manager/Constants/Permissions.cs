@@ -6,10 +6,10 @@
         {
             return new List<string>()
             {
-                {module},
-                {module},
-                {module},
-                {module},
+                $"Permissions.{module}.Create",
+                $"Permissions.{module}.View",
+                $"Permissions.{module}.Edit",
+                $"Permissions.{module}.Delete"
             };
         }
         public static class Actions
