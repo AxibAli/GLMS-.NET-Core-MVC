@@ -5,7 +5,7 @@ namespace GLMS.Controllers
     public class ActionsController : Controller
     {
 
-        public IActionResult Action()
+        public async Task<IActionResult> Action()
         {
             return View();
         }
