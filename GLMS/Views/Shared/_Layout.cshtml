@@ -17,9 +17,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     <link id="pagestyle" href="~/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    @*    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/GLMS.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/GLMS.styles.css" asp-append-version="true" />*@
 </head>
 <body class="g-sidenav-show  bg-gray-200">
     <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
@@ -41,22 +42,22 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Admin">
+                    <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">
                         <span class="nav-link-text ms-1">CreateRole</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Users">
+                    <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">
                         <span class="nav-link-text ms-1">User</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Roles">
+                    <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">
                         <span class="nav-link-text ms-1">Roles</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Actions" asp-action="Action">
+                    <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Actions" asp-action="Index">
                         <span class="nav-link-text ms-1">Action</span>
                     </a>
                 </li>
@@ -68,19 +69,16 @@
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
-                    <h5 class="font-weight-bolder mb-0">Dashboard</h5>
-        </nav>
-                    <ul class="navbar-nav  justify-content-end">
-                        <li class="nav-item d-flex align-items-center">
-                            <a href=#" class="nav-link text-body font-weight-bold px-0">
-                                <i class="fa fa-user me-sm-1"></i>
-                                <span class="d-sm-inline d-none">Sign In</span>
-                            </a>
-                        </li>
-                        <li>
-                            <partial name="_loginPartial"/>
-                        </li>
-                    </ul>
+                    <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+                </nav>
+                <ul class="navbar-nav  justify-content-end">
+                    <li class="nav-item d-flex align-items-center">
+                        <a href="../pages/sign-in.html" class="nav-link text-body font-weight-bold px-0">
+                            <i class="fa fa-user me-sm-1"></i>
+                            <span class="d-sm-inline d-none">Sign In</span>
+                        </a>
+                    </li>
+                </ul>
                 <div class="container">
                     <main role="main" class="pb-3">
                         @RenderBody()

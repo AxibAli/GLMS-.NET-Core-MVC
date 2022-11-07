@@ -7,11 +7,12 @@ namespace GLMS.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly RoleManager<IdentityRole<int>> _roleManager;
+        private readonly RoleManager<IdentityRole<int>> roleManager;
+        private readonly string? result;
 
         public AdminController(RoleManager<IdentityRole<int>> roleManager)
         {
-            _roleManager = roleManager;
+            this.roleManager = roleManager;
         }
 
         public IActionResult Index()
@@ -22,12 +23,12 @@ namespace GLMS.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ProjectRole role)
         {
-            var roleExist = await _roleManager.RoleExistsAsync(role.RoleName);
+            var roleExist = await roleManager.RoleExistsAsync(role.RoleName);
             if (!roleExist)
             {
-                var result = await _roleManager.CreateAsync(new IdentityRole<int>(role.RoleName));
+                var result = await roleManager.CreateAsync(new IdentityRole<int>(role.RoleName));
             }
-            return View();
+            return View(result);
         }
     }
 }
