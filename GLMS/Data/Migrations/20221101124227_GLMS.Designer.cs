@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GLMS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221031151636_GLMS")]
+    [Migration("20221101124227_GLMS")]
     partial class GLMS
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
