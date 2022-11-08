@@ -29,58 +29,59 @@
     <link rel="stylesheet" href="~/GLMS.styles.css" asp-append-version="true" />*@
 </head>
 <body class="g-sidenav-show  bg-gray-200">
-    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
-        <div class="sidenav-header">
-            <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-            <H1><span class="ms-1 font-weight-bold text-white">GLMS</span></H1>
-        </div>
-        <hr class="horizontal light mt-0 mb-2">
-        @if (SignInManager.IsSignedIn(User))
-        {
+    @if (SignInManager.IsSignedIn(User))
+     {
+        <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+            <div class="sidenav-header">
+                <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+                <H1><span class="ms-1 font-weight-bold text-white">GLMS</span></H1>
+            </div>
+            <hr class="horizontal light mt-0 mb-2">
+        
 
         
-        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
-                        <span class="nav-link-text ms-1">Home</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">
-                        <span class="nav-link-text ms-1">Privacy</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">
-                        <span class="nav-link-text ms-1">CreateRole</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">
-                        <span class="nav-link-text ms-1">User</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">
-                        <span class="nav-link-text ms-1">Roles</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Actions" asp-action="Index">
-                        <span class="nav-link-text ms-1">Actions</span>
-                    </a>
-                </li>
+            <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+                <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Actions" asp-action="Index">
-                            <span class="nav-link-text ms-1">IP Settings</span>
+                        <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                            <span class="nav-link-text ms-1">Home</span>
                         </a>
                     </li>
-            </ul>
-        </div>
-        }
-    </aside>
-    
+                    <li class="nav-item">
+                        <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">
+                            <span class="nav-link-text ms-1">Privacy</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">
+                            <span class="nav-link-text ms-1">CreateRole</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">
+                            <span class="nav-link-text ms-1">User</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">
+                            <span class="nav-link-text ms-1">Roles</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Actions" asp-action="Index">
+                            <span class="nav-link-text ms-1">Actions</span>
+                        </a>
+                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white " class="nav-link text-dark" asp-area="" asp-controller="Actions" asp-action="Index">
+                                <span class="nav-link-text ms-1">IP Settings</span>
+                            </a>
+                        </li>
+                </ul>
+            </div>
+            
+        </aside>
+    }
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
