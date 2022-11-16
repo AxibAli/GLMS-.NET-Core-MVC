@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GLMS.Controllers
 {
-    [IpBlockActionFilter]
+    //[IpBlockActionFilter]
     public class AdminController : Controller
     {
         private readonly RoleManager<IdentityRole<int>> roleManager;

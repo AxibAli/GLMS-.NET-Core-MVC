@@ -36,7 +36,7 @@
                     @role.Id
                 </td>
                 <td class="text-right">
-                    <div class="btn-group">
+@*                    <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Action
                         </button>
@@ -44,9 +44,8 @@
                             <a class="dropdown-item">
                                 <i class="fas fa-pencil-alt"></i> Edit
                             </a>
-                            <form class="d-inline">
-                                <a class="dropdown-item"><i class="fas fa-trash-alt"></i> Delete</a>
-                            </form>
+                           
+                            <a class="dropdown-item"><i class="fas fa-trash-alt"></i> Delete</a>
                             
                             @if (role.Name != "SuperAdmin")
                             {
@@ -55,11 +54,26 @@
                                 </a>
                             }
                         </div>
-                    </div>
+                    </div>*@
+
+
+                    <label class="dropdown">
+                        <div class="dd-button">
+                            Action
+                        </div>
+                        <input type="checkbox" class="dd-input" id="test">
+                        <ul class="dd-menu">
+                            <li><i class="fas fa-pencil-alt"></i> Edit</li>
+                            <li><i class="fas fa-trash-alt"></i> Delete</li>
+                            @if(role.Name!="SuperAdmin")
+                            {
+                                <li> <i class="fas fa-wrench"></i> Manage Permissions</li>
+                            }
+                        </ul>
+                    </label>
                 </td>
             </tr>
         }
-      
     </tbody>
 </table>
 <a asp-controller="Home" asp-action="Index" style="width:100px" class="btn btn-primary">
