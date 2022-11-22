@@ -1,5 +1,5 @@
 ﻿@using GLMS.Models
-@model PermissionViewModel
+@model Permission
 <h1>Permissions</h1>
 <br />
 <div class="card">
@@ -40,17 +40,26 @@
                         </tr>
                     }
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td col-md="6">
+                            <a asp-controller="Home" asp-action="Index" style="width:100px; margin:10px;" class="btn btn-primary">
+                                Back
+                            </a>
+                        </td>
+                        <td >
+                            <button type="submit" id="save" style="width:100px; margin:10px;" class="btn btn-success">
+                                <i class="fa fa-check"></i>
+                                Save
+                            </button>
+                    
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
-            <div class="col-sm-12" style="padding: 20px 20px 0px 0px">
-                <button type="submit" id="save" class="btn btn-success">
-                    <i class="fa fa-check"></i>
-                    Save
-                </button>
-            </div>
+            
+            
         </form>
        
     </div>
 </div>
-<a asp-controller="Home" asp-action="Index" style="width:100px" class="btn btn-primary">
-    Back
-</a>

@@ -36,7 +36,7 @@
                     @role.Id
                 </td>
                 <td class="text-right">
-@*                    <div class="btn-group">
+                @*<div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Action
                         </button>
@@ -58,16 +58,16 @@
 
 
                     <label class="dropdown">
-                        <div class="dd-button">
+                        <div class="dd-button" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown">
                             Action
                         </div>
                         <input type="checkbox" class="dd-input" id="test">
                         <ul class="dd-menu">
-                            <li><i class="fas fa-pencil-alt"></i> Edit</li>
-                            <li><i class="fas fa-trash-alt"></i> Delete</li>
+                            <li><a asp-controller="Permission" asp-action="Update" asp-route-roleId="@role.Id"><i class="fas fa-pencil-alt"></i> Edit</a></li>
+                            <li><a asp-controller="Permission" asp-action="Delete" asp-route-roleId="@role.Id"><i class="fas fa-trash-alt"></i> Delete</a></li>
                             @if(role.Name!="SuperAdmin")
                             {
-                                <li> <i class="fas fa-wrench"></i> Manage Permissions</li>
+                                <li><a asp-controller="Permission" asp-action="Index" asp-route-roleId="@role.Id"><i class="fas fa-wrench"></i> Manage Permissions</a> </li>
                             }
                         </ul>
                     </label>

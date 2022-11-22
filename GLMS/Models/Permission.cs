@@ -2,7 +2,7 @@
 
 namespace GLMS.Models
 {
-    public class PermissionViewModel
+    public class Permission
     {
         public Guid Id { get; set; }
         [Required]

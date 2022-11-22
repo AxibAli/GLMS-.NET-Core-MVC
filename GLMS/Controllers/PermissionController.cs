@@ -5,6 +5,7 @@ using GLMS.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GLMS.Controllers
 {
@@ -18,9 +19,9 @@ namespace GLMS.Controllers
         {
             _roleManager = roleManager;
         }
-        public async Task<IActionResult> Add(int roleId)
+        public async Task<IActionResult> Index(int roleId)
         {
-            var model = new PermissionViewModel();
+            var model = new Permission();
             var allPermissions = new List<RoleClaimsViewModel>();
             allPermissions.GetPermissions(typeof(Permissions.Actions), roleId.ToString());
             var role = await _roleManager.FindByIdAsync(roleId.ToString());
@@ -39,9 +40,13 @@ namespace GLMS.Controllers
             model.RoleClaims = allPermissions;
             return View(model);
         }
-        public async Task<IActionResult> Update(PermissionViewModel model)
+
+        [HttpPut]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(Permission model)
         {
-            var role = await _roleManager.FindByIdAsync(model.RoleId.ToString());
+            var roleId = model.RoleId;
+            var role = await _roleManager.FindByIdAsync(roleId.ToString());
             var claims = await _roleManager.GetClaimsAsync(role);
             foreach (var claim in claims)
             {
@@ -54,5 +59,67 @@ namespace GLMS.Controllers
             }
             return RedirectToAction("Index", new { roleId = model.RoleId });
         }
+        [HttpDelete]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(Permission model)
+        {
+            var roleId = model.RoleId;
+            var role = await _roleManager.FindByIdAsync(roleId.ToString());
+            var claims = await _roleManager.GetClaimsAsync(role);
+            foreach (var claim in claims)
+            {
+                await _roleManager.RemoveClaimAsync(role, claim);
+            }
+            return View(model);
+        }
+
+        //public async Task<IActionResult> Edit(int roleId, [Bind("RoleId,RoleClaims")] PermissionViewModel model)
+        //{
+        //    if (roleId != model.RoleId)
+        //    {
+        //        return NotFound();
+        //    }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _roleManager.Update(model);
+        //            await _roleManager.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!PermissionViewModelExists(model.RoleId))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //            return RedirectToAction(nameof(Index));
+        //        }
+        //    }
+        //    return View(model);
+        //}
+        //[HttpDelete, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Delete(int roleId)
+        //{
+        //    if (_roleManager.AddPermissionClaim == null)
+        //    {
+        //        return Problem("Error Null");
+        //    }
+        //    var permission = await _roleManager.FindByIdAsync(roleId.ToString());
+        //    if (permission != null)
+        //    {
+        //        await _roleManager.RemoveClaimAsync( permission);
+        //    }
+        //    await _roleManager.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
+        //private bool PermissionViewModelExists(int roleId)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

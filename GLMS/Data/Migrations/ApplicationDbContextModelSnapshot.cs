@@ -36,23 +36,6 @@ namespace GLMS.Migrations
                     b.ToTable("permissions");
                 });
 
-            modelBuilder.Entity("GLMS.Models.ProjectRole", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("RoleName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("projectRoles");
-                });
-
             modelBuilder.Entity("GLMS.Models.RoleClaimsViewModel", b =>
                 {
                     b.Property<Guid>("Id")

@@ -63,19 +63,6 @@ namespace GLMS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "projectRoles",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_projectRoles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "userRoles",
                 columns: table => new
                 {
@@ -275,9 +262,6 @@ namespace GLMS.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "projectRoles");
 
             migrationBuilder.DropTable(
                 name: "RoleClaimsViewModel");
