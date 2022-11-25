@@ -62,5 +62,10 @@ namespace GLMS.Manager.Seeds
                 }
             }
         }
+
+        internal static Task SeedSuperAdminAsync(UserManager<IdentityUser<int>> userManager, RoleManager<IdentityRole<int>> roleManager)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

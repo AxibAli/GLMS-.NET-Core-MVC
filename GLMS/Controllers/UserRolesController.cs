@@ -8,11 +8,11 @@ namespace GLMS.Controllers
     //[Authorize(Roles = "SuperAdmin")]
     public class UserRolesController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<IdentityUser<int>> _userManager;
+        private readonly SignInManager<IdentityUser<int>> _signInManager;
+        private readonly RoleManager<IdentityRole<int>> _roleManager;
 
-        public UserRolesController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager)
+        public UserRolesController(UserManager<IdentityUser<int>> userManager, SignInManager<IdentityUser<int>> signInManager, RoleManager<IdentityRole<int>> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;

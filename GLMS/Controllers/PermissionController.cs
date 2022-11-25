@@ -41,23 +41,23 @@ namespace GLMS.Controllers
             return View(model);
         }
 
-        [HttpPut]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(Permission model)
+        public async Task<IActionResult> Update(int roleId)
         {
-            var roleId = model.RoleId;
             var role = await _roleManager.FindByIdAsync(roleId.ToString());
             var claims = await _roleManager.GetClaimsAsync(role);
             foreach (var claim in claims)
             {
                 await _roleManager.RemoveClaimAsync(role, claim);
             }
+            var model = new Permission();
             var selectedClaims = model.RoleClaims.Where(a => a.Selected).ToList();
             foreach (var claim in selectedClaims)
             {
                 await _roleManager.AddPermissionClaim(role, claim.Value);
             }
-            return RedirectToAction("Index", new { roleId = model.RoleId });
+            return RedirectToAction("Index", new { roleId = roleId });
         }
         [HttpDelete]
         [ValidateAntiForgeryToken]

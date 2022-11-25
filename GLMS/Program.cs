@@ -3,10 +3,7 @@ using GLMS.Data;
 using GLMS.Manager.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,8 +40,8 @@ builder.Services.AddOptions();
 ////services.AddRedisRateLimiting();
 
 
-//// configuration (resolvers, counter key builders)
-//builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+// configuration (resolvers, counter key builders)
+builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
 
 var app = builder.Build();

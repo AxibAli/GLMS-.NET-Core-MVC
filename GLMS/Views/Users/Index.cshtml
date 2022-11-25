@@ -1,5 +1,11 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @model IEnumerable<IdentityUser<int>>
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+@*no need for site.css made a custom css file Named as "glms_styles.css" it will be use through out the whole project add custom css code in this file.*@
+<link href="~/css/glms_styles.css" rel="stylesheet" asp-append-version="true" />
+
 <h1>User List</h1>
 <br />
 <table class="table table-striped" id="userTable">
@@ -39,15 +45,23 @@
                     </a>
                 </td>
                 <td>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Action
-                        </button>
-                        <div class="dropdown-menu shadow animated--grow-in">
-                            <a style='margin-right:16px' asp-controller="UserRoles" asp-action="Index" asp-route-userId="@user.Id" class="dropdown-item">
-                                <i class="fas fa-wrench"></i> Manage Roles
-                            </a>
-                        </div>
+                    <div class="dropdown">
+                        <a class="btn btn-secondary text-white dropdown-toggle" style="font-size:14px;" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-wrench"></i>Actions
+                        </a>
+
+                        <ul class="dropdown-menu" style="background-color:lightgray;" aria-labelledby="dropdownMenuLink">
+                            <li>
+                                <a class="nav-link text-dark" style="font-size:14px;" asp-route-userId="@user.Id" asp-controller="UserRoles" asp-action="Index">Manage User Roles</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" style="font-size:14px;" asp-route-userId="@user.Id" asp-controller="UserRoles" asp-action="Update">Edit</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" style="font-size:14px;" asp-route-userId="@user.Id" asp-controller="UserRoles" asp-action="Delete">Delete</a>
+                             </li>
+                            
+                        </ul>
                     </div>
                 </td>
             </tr>
@@ -55,6 +69,8 @@
         
     </tbody>
 </table>
+<br />
+
 <a asp-controller="Home" asp-action="Index" style="width:100px" class="btn btn-primary">
     Back
 </a>
@@ -77,5 +93,8 @@
     </li>
   </ul>
 </nav>    
-
-    <!--Pagination End-->
+ <!--Pagination End-->
+ <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/glms.js"></script> @* no need for site.css made a custom css file Named as "glms_styles.css" it will be use through out the whole project add custom css code in this file.*@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

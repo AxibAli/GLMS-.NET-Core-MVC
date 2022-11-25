@@ -21,71 +21,84 @@
 </head>
 <body>
     <header>
+
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <ul class="navbar-nav">
-                @if (SignInManager.IsSignedIn(User))
-                {
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-link text-dark" style="margin:2px;" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-                    </li>
-                    <li class="nav-item">
-                        <form class="form-inline" style="margin:2px;" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                            <button type="submit" class="nav-link btn btn-danger text-white">Logout</button>
-                        </form>
-                    </li>
-                    <!--Side Bar Start-->
-                    <div id="mySidebar" class="sidebar">
-                        <a class="closebtn" onclick="closeNav()">×</a>
-                        <a class="nav-link text-white" style="font-size:14px;" asp-controller="Home" asp-action="Index">Home</a>
-                        <a class="nav-link text-white" style="font-size:14px;" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            
+            @if (SignInManager.IsSignedIn(User))
+            {
+                
+                <!--Side Bar Start-->
+                <li class="nav-item">
+                        <div id="mySidebar" class="sidebar" style="background:linear-gradient(to bottom, #000000 6%, #ffffff 108%)">
+                    <a class="closebtn" onclick="closeNav()">×</a>
+                    <a class="nav-link text-white" style="font-size:14px;" asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="nav-link text-white" style="font-size:14px;" asp-controller="Home" asp-action="Privacy">Privacy</a>
 
 
 
-                        <div class="dropdown">
-                            <a class="btn btn-secondary text-white dropdown-toggle" style="font-size:14px;" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-gear"></i>Settings
-                            </a>
+                    <div class="dropdown">
+                        <a class="btn btn-secondary text-white dropdown-toggle" style="font-size:14px;" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-gear"></i>Settings
+                        </a>
 
-                            <ul class="dropdown-menu" style="background-color:lightgray;" aria-labelledby="dropdownMenuLink">
-                                <li>
-                                    <a class="nav-link text-dark" style="font-size:14px;" asp-controller="Users" asp-action="Index">Users</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link text-dark" style="font-size:14px;" asp-controller="Roles" asp-action="Index">Roles</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link text-dark" style="font-size:14px;" asp-controller="Settings" asp-action="Index">IP Settings</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <ul class="dropdown-menu" style="background-color:lightgray;" aria-labelledby="dropdownMenuLink">
+                            <li>
+                                <a class="nav-link text-dark" style="font-size:14px;" asp-controller="Users" asp-action="Index">Users</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" style="font-size:14px;" asp-controller="Roles" asp-action="Index">Roles</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" style="font-size:14px;" asp-controller="Settings" asp-action="Index">IP Settings</a>
+                            </li>
+                        </ul>
                     </div>
-
-                    <div id="main">
+                </div>
+                </li>
+                <li class="nav-item">
+                     <div id="main">
                         <button class="openbtn" onclick="openNav()">☰</button>
                     </div>
-                     <!--Side Bar End-->
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GLMS</a>
-                
-                <button class="btn btn-dark" onclick="darkMode()">Dark Mode</button>
+                </li>
+                <!--Side Bar End-->
+                <li class="nav-item">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GLMS</a>
 
-            </div>
-                }
-                else
-                {
-                    <li class="nav-item" align="right">
-                        <a class="nav-link btn btn-link text-dark" style="margin:2px; padding:2px; width:100%;" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                    </li>
-                    <li class="nav-item" align="right">
-                        <a class="nav-link btn btn-primary text-white" style="margin:2px; padding:5px; width:100%;" asp-area="Identity" asp-page="/Account/Login">Login</a>
-                    </li>
-                }
+                    <button class="btn btn-dark" onclick="darkMode()">Dark Mode</button>
+
+                </div>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link btn btn-link text-dark" style="margin:2px;" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+                </li>
+                <li class="nav-item">
+                    <form class="form-inline" style="margin:2px;" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="nav-link btn btn-danger text-white">Logout</button>
+                    </form>
+                </li>
+                
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link btn btn-link text-dark" style="margin:2px; padding:2px; width:100%;" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary text-white" style="margin:2px; padding:5px; width:100%;" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                </li>
+            }
+                
             </ul>
            
-            @*<div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+         @* ALTERNATIVE DESIGN   
+             
+         <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
                 <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
                     <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-                    <span class="fs-5 fw-semibold">Collapsible</span>
+                    <span class="fs-5 fw-semibold">☰</span>
                 </a>
                 <ul class="list-unstyled ps-0">
                     <li class="mb-1">
@@ -141,15 +154,15 @@
                         </div>
                     </li>
                 </ul>
-            </div>*@
-            
-@*
+            </div>
+  
             <partial name="_LoginPartial" />*@
         </nav>
     </header>
 
 
-    @* <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+    @* OLD DESIGN
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

@@ -2,14 +2,20 @@
 @model IEnumerable<IdentityRole<int>>
 <h1>Roles</h1>
 @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-*@<br />
+*@
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+@*no need for site.css made a custom css file Named as "glms_styles.css" it will be use through out the whole project add custom css code in this file.*@
+<link href="~/css/glms_styles.css" rel="stylesheet" asp-append-version="true" />
+<br />
 <form method="post" asp-action="addrole" asp-controller="Roles">
     <div class="input-group">
         <input name="roleName" class="form-control w-25" type="text" style="border-radius:4px;" placeholder="Enter Role" />
-        <span class="input-group-btn">
-            <button class="btn btn-primary">Add New Role</button>
-        </span>
     </div>
+    <br>
+    <span class="input-group-btn">
+        <button class="btn btn-primary">Add New Role</button>
+    </span>
 </form>
 <table class="table table-striped" id="roleTable">
     <thead>
@@ -57,7 +63,7 @@
                     </div>*@
 
 
-                    <label class="dropdown">
+                    @*<label class="dropdown">
                         <div class="dd-button" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown">
                             Action
                         </div>
@@ -70,13 +76,37 @@
                                 <li><a asp-controller="Permission" asp-action="Index" asp-route-roleId="@role.Id"><i class="fas fa-wrench"></i> Manage Permissions</a> </li>
                             }
                         </ul>
-                    </label>
+                    </label>*@
+                    <div class="dropdown">
+                        <a class="btn btn-secondary text-white dropdown-toggle" style="font-size:14px;" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-wrench"></i>Actions
+                        </a>
+
+                        <ul class="dropdown-menu" style="background-color:lightgray;" aria-labelledby="dropdownMenuLink">
+                            <li>
+                                <a class="nav-link text-dark" style="font-size:14px;" asp-route-roleId="@role.Id" asp-controller="Permission" asp-action="Index">Manage Permissions</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" style="font-size:14px;" asp-route-roleId="@role.Id" asp-controller="Permission" asp-action="Update">Edit</a>
+                            </li>
+                            @if(role.Name!="SuperAdmin"){
+                            <li>
+                                    <a class="nav-link text-dark" style="font-size:14px;" asp-route-roleId="@role.Id" asp-controller="Permission" asp-action="Delete">Delete</a>
+                            </li>
+                            }
+                        </ul>
+                    </div>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<br />
+
 <a asp-controller="Home" asp-action="Index" style="width:100px" class="btn btn-primary">
     Back
 </a>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/glms.js"></script> @* no need for site.css made a custom css file Named as "glms_styles.css" it will be use through out the whole project add custom css code in this file.*@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
