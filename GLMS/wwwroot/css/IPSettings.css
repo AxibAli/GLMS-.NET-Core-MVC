@@ -1,0 +1,172 @@
+﻿.title {
+    position: relative;
+    padding-bottom: 16px;
+    margin-bottom: 1em;
+}
+
+    .title span {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 300px;
+        height: 3px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    }
+
+        .title span i {
+            display: inline-block;
+            background-color: #264653;
+            vertical-align: middle;
+            height: 100%;
+            border-radius: 4px;
+        }
+
+            .title span i:nth-of-type(1) {
+                -webkit-box-flex: 60%;
+                -ms-flex: 60%;
+                flex: 60%;
+                margin-right: 10px;
+            }
+
+            .title span i:nth-of-type(2) {
+                -webkit-box-flex: 30%;
+                -ms-flex: 30%;
+                flex: 30%;
+                margin-right: 16px;
+            }
+
+            .title span i:nth-of-type(3) {
+                -webkit-box-flex: 10%;
+                -ms-flex: 10%;
+                flex: 10%;
+            }
+
+._card_view {
+    padding: 10px;
+    -webkit-box-shadow: 0px 0px 7px -1px #d8d8d8;
+    box-shadow: 0px 0px 7px -1px #d8d8d8;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+    ._card_view ._group {
+        margin-bottom: 10px;
+    }
+
+        ._card_view ._group label {
+            display: block;
+            color: #5b5b5b;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #ececec;
+            opacity: 0.8;
+            font-size: 12px;
+        }
+
+        ._card_view ._group p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            word-break: break-word;
+            color: #5800cb;
+            margin-bottom: 0;
+            font-size: 14px;
+            min-height: 61px;
+        }
+
+    ._card_view ._action {
+        position: relative;
+    }
+
+        ._card_view ._action button {
+            border: none;
+            background-color: #f6f6f6;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            outline: none;
+        }
+
+            ._card_view ._action button svg {
+                display: inline-block;
+                vertical-align: sub;
+                width: 20px;
+                pointer-events: none;
+            }
+
+        ._card_view ._action ._key_ic {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+.modal-body ul {
+    padding: 0;
+    list-style: none;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+    .modal-body ul::-webkit-scrollbar {
+        width: 5px;
+        background-color: rgba(119, 0, 255, 0.24);
+    }
+
+    .modal-body ul::-webkit-scrollbar-thumb {
+        background-color: rgba(119, 0, 255, 0.24);
+        border-radius: 5px;
+    }
+
+    .modal-body ul li {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+.modal-body .alert-success {
+    position: relative;
+    padding: 5px 34px 5px 5px;
+    border-radius: 3px;
+}
+
+    .modal-body .alert-success button {
+        border: none;
+        line-height: 1px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        color: #e91e63;
+        position: absolute;
+        right: 7px;
+        padding: 0 0 4px;
+        bottom: 0;
+        top: 0;
+        margin: auto;
+        outline: none;
+        cursor: pointer;
+    }
+
+.modal-footer ._edit_key {
+    color: #496b00;
+    max-width: 180px;
+    overflow: hidden;
+    vertical-align: bottom;
+    text-overflow: ellipsis;
+    display: -webkit-inline-box;
+    -webkit-line-clamp: 1;
+    word-break: break-word;
+    -webkit-box-orient: vertical;
+}
+
+.modal-body .alert-success span ._line_breake {
+    margin: 4px 0;
+    width: 90%;
+}
+/*# sourceMappingURL=setting-list.css.map */

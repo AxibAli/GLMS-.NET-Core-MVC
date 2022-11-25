@@ -1,0 +1,91 @@
+﻿@using GLMS.Models
+@model IEnumerable<PropertyConfigurationModel>
+@{
+    ViewBag.Title = "Setting Information";
+}
+<link href="~/css/ipsettings.css" rel="stylesheet" />
+<div class="container">
+    <h1 class="title">Setting Information <span><i></i><i></i><i></i></span></h1>
+    <input type="text" id="txtSearch" /> <button onclick="searchConfig()">Search</button>
+    <br /><br />
+    <div class="row">
+        @foreach (var item in Model)
+       {
+            <div class="col-sm-12 col-md-4 col-lg-4" id="child_@item.XmlLabel">
+                <div class="_card_view">
+                    <div class="_group">
+                        <label>Key</label>
+                    <p class="val">@item.XmlLabel</p>
+                    </div>
+                    <div class="_group">
+                        <label>Value</label>
+                    <p id="value_@item.XmlLabel">@item.Value</p>
+                    </div>
+                    <div class="_action">
+                    <button data-edit="@item.XmlLabel" data-islist="@item.IsList" data-delimeter="@item.Delimeter">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="23.632" height="21.002" viewBox="0 0 23.632 21.002">
+                                <path data-name="Icon awesome-edit"
+                                  d="M16.518,3.416l3.7,3.7a.4.4,0,0,1,0,.566l-8.961,8.961-3.807.423a.8.8,0,0,1-.882-.882l.423-3.807,8.961-8.961A.4.4,0,0,1,16.518,3.416Zm6.647-.94-2-2a1.6,1.6,0,0,0-2.265,0L17.445,1.927a.4.4,0,0,0,0,.566l3.7,3.7a.4.4,0,0,0,.566,0l1.452-1.452a1.6,1.6,0,0,0,0-2.265Zm-7.41,11.73v4.177H2.626V5.255h9.428a.5.5,0,0,0,.349-.144L14.044,3.47a.492.492,0,0,0-.349-.841H1.969A1.97,1.97,0,0,0,0,4.6V19.04a1.97,1.97,0,0,0,1.969,1.969H16.411a1.97,1.97,0,0,0,1.969-1.969V12.566a.493.493,0,0,0-.841-.349L15.9,13.858A.5.5,0,0,0,15.755,14.207Z"
+                                  transform="translate(0 -0.007)" fill="#00912b" />
+                            </svg>
+                            Edit
+                        </button>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48.497" height="48.497" viewBox="0 0 48.497 48.497" class="_key_ic">
+                            <path data-name="Icon metro-key"
+                              d="M23.576,0A10.723,10.723,0,0,0,13.04,12.68L0,25.72v6.43a2.143,2.143,0,0,0,2.143,2.143H4.287V32.149H8.573V27.863H12.86V23.576h4.287L19.927,20.8A10.718,10.718,0,1,0,23.576,0Zm3.211,10.721A3.215,3.215,0,1,1,30,7.506,3.215,3.215,0,0,1,26.787,10.721Z"
+                              transform="translate(24.249) rotate(45)" fill="rgba(87,186,74,0.51)" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+        }
+
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="setting-modal">
+                </div>
+                <div class="modal-footer">
+                    <p>Key: <span class="_edit_key"></span></p>
+                    <button type="button" id="modalBtnSave" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Pagination Start-->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!--Pagination End-->
+
+</div>
+
+<script src="~/js/whatsap-loader.js" data-style-dir="/scss/loader.min.css"></script>
+<script src="~/js/IPSetting.js"></script>
