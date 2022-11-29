@@ -1,0 +1,68 @@
+﻿@model List<string>
+@{
+    Layout = "~/Views/Shared/_ListLayout.cshtml";
+}
+@section title{
+        <span>Records</span>
+}
+
+@section searchFields{
+
+        <div class="form-group">
+            <label for="PhoneNo">Phone Number</label>
+            <input type="text" class="form-control form-control-sm" placeholder="Search by phone number" name="PhoneNo" value="" />
+        </div>
+}
+
+@section tabledropdown{
+        <div class="row">
+            <div class="col-sm-4 mt-3 mb-3">
+                <label for="tableName" style="font-weight:bold;">Table Name</label>
+                <select id="ddlTables" class="form-control" style="cursor:pointer" required>
+                </select>
+            </div>
+            <div class="col-sm-4 mt-3 mb-3">
+                <label for="Sorting" style="font-weight:bold;">Sorting</label>
+                <select id="ddlSorting" class="form-control" style="cursor:pointer" required>
+                    <option value="0" data-sorting="asc"> Ascending</option>
+                    <option value="1" data-sorting="desc"> Descending</option>
+                </select>            
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-3 mt-3 mb-3">
+                <label for="Sorting" style="font-weight:bold;">From Date</label>
+                <input type="date" class="form-control" id="dpFromDate" style="width:180px;" name="FromDate">
+            </div>
+            <div class="col-sm-3 mt-3 mb-3">
+                <label for="Sorting" style="font-weight:bold;">To Date</label>
+                <input type="date" class="form-control" id="dpToDate" style="width:180px;" name="ToDate">
+            </div>
+        </div>
+}
+
+@section tableHeadings{
+    @*<th>S.No</th>
+        <th>PhoneNo</th>
+        <th>Name</th>
+        <th>Is&nbsp;Subscribe</th>
+        <th>Is&nbsp;Registered</th>
+        <th>App&nbsp;Name</th>
+        <th>Operations</th>*@
+
+}
+
+
+@section pageScript{
+        <script src="~/Scripts/ViewScripts/ListOfTables.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+}
+
+@section lastScript
+    {
+        <script>
+            window.createPage = createPageForTableList;
+        </script>
+}

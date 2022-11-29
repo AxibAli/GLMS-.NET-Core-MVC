@@ -2,7 +2,7 @@
 
 namespace GLMS.Controllers
 {
-    public class LoginView : Controller
+    public class LogView : Controller
     {
         public IActionResult Index()
         {
