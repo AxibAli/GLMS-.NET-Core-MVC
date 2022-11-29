@@ -24,6 +24,8 @@ builder.Services.AddControllersWithViews();
 // needed to load configuration from appsettings.json
 builder.Services.AddOptions();
 
+//-------IP Limiting Starts--------//
+
 //// needed to store rate limit counters and ip rules
 //builder.Services.AddMemoryCache();
 
@@ -39,6 +41,7 @@ builder.Services.AddOptions();
 ////services.AddDistributedRateLimiting<RedisProcessingStrategy>();
 ////services.AddRedisRateLimiting();
 
+//-------IP Limiting Ends--------//
 
 // configuration (resolvers, counter key builders)
 builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
