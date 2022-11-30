@@ -61,7 +61,7 @@
 
     </style>
     <link href="~/scss/listLayout.min.css" rel="stylesheet" />
-}
+}@*
 <div id="CallDeleteModal"></div>
 <div class="container mt-5">
     <h2 class="text-center mb-2">
@@ -105,7 +105,7 @@
         </div>
     </div>
 </div>
-@*Modal for Search*@
+
 <div class="modal fade" id="searchModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -129,7 +129,7 @@
         </div>
     </div>
 </div>
-@*Modal for CRUD*@
+
 <div class="modal fade" id="crudModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -138,7 +138,7 @@
             </div>
             <div id="crudModalBody" class="modal-body">
             </div>
-            @* footer is been added *@
+            
             <div class="modal-footer">
                 <button class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
             </div>
@@ -150,9 +150,11 @@
 @section scripts{
     <script src="~/Content/js/whatsap-loader.js" data-style-dir="/scss/loader.min.css"></script>
     @*<script src="~/Scripts/al"></script>*@
+    @*
     <script src="~/Scripts/jquery.twbsPagination.js"></script>
     <script src="~/Scripts/Repository.js"></script>
     @RenderSection("pageScript", required: true)
     <script src="~/Scripts/listParentScripts.js"></script>
     @RenderSection("lastScript",required:false)
 }
+*@
