@@ -20,23 +20,29 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/bootstrap-notify.min.js"></script>
 </head>
 <body>
+    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GLMS</a>
     <header>
 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+           
             <ul class="navbar-nav">
+                
             
             @if (SignInManager.IsSignedIn(User))
             {
                 
                 <!--Side Bar Start-->
+
                 <li class="nav-item">
+   
                         <div id="mySidebar" class="sidebar" style="background:linear-gradient(to bottom, #000000 6%, #ffffff 108%)">
                     <a class="closebtn" onclick="closeNav()">×</a>
                     <a class="nav-link text-white" style="font-size:14px;" asp-controller="Home" asp-action="Index">Home</a>
                     <a class="nav-link text-white" style="font-size:14px;" asp-controller="Home" asp-action="Privacy">Privacy</a>
 
 
-
+                @if (User.IsInRole("superAdmin"))
+                            {
                     <div class="dropdown">
                         <a class="btn btn-secondary text-white dropdown-toggle" style="font-size:14px;" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-gear"></i>Settings
@@ -49,11 +55,17 @@
                             <li>
                                 <a class="nav-link text-dark" style="font-size:14px;" asp-controller="Roles" asp-action="Index">Roles</a>
                             </li>
+                                   
                             <li>
                                 <a class="nav-link text-dark" style="font-size:14px;" asp-controller="Settings" asp-action="Index">IP Settings</a>
-                            </li>
+                             </li>
+                                 
                         </ul>
+                        
+                                
                     </div>
+                            }
+                            <button class="btn btn-dark dropdown" style="float:right;" onclick="darkMode()">Dark Mode</button>
                 </div>
                 </li>
                 <li class="nav-item">
@@ -62,37 +74,10 @@
                     </div>
                 </li>
                 <!--Side Bar End-->
-                <li class="nav-item">
-                <div class="container-fluid">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GLMS</a>
-
-                    <button class="btn btn-dark" onclick="darkMode()">Dark Mode</button>
-
-                </div>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link btn btn-link text-dark" style="margin:2px;" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-                </li>
-                <li class="nav-item">
-                    <form class="form-inline" style="margin:2px;" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                        <button type="submit" class="nav-link btn btn-danger text-white">Logout</button>
-                    </form>
-                </li>
                 
             }
-            else
-            {
-                <li class="nav-item">
-                    <a class="nav-link btn btn-link text-dark" style="margin:2px; padding:2px; width:100%;" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-primary text-white" style="margin:2px; padding:5px; width:100%;" asp-area="Identity" asp-page="/Account/Login">Login</a>
-                </li>
-            }
-                
             </ul>
-           
+            @Html.Partial("_LoginPartial")
          @* ALTERNATIVE DESIGN   
              
          <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
