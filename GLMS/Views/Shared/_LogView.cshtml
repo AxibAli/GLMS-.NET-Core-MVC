@@ -1,0 +1,25 @@
+﻿@using WhatsappMiddlewareAPI.Controllers
+@model List<FileModel>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.FileName</td>
+        <td>
+            @* @Html.ActionLink("Download", "GetFiles", new { filePath = item.FilePath })*@
+            <div>
+                @foreach (var file in item.NoOfFiles)
+                {
+                    <div>
+
+                        <a href="#" id="@file.FileFullName" data-filename="@file.FileName" data-filepath="@file.FilePath" onclick="viewLog(@file.FileFullName)">@file.FileName</a>
+                        ||
+                        @Html.ActionLink("Download", "DownloadFile", new { fileName = file.FilePath })
+                        ||
+                        @file.FileModificationDate
+                    </div>
+                }
+            </div>
+        </td>
+
+    </tr>
+}

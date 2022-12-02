@@ -40,8 +40,8 @@
                     <a class="nav-link text-white" style="font-size:14px;" asp-controller="Home" asp-action="Index">Home</a>
                     <a class="nav-link text-white" style="font-size:14px;" asp-controller="Home" asp-action="Privacy">Privacy</a>
 
-
-                @if (User.IsInRole("superAdmin"))
+@*
+                @if (User.IsInRole("superAdmin"))*@
                             {
                     <div class="dropdown">
                         <a class="btn btn-secondary text-white dropdown-toggle" style="font-size:14px;" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -64,7 +64,7 @@
                         
                                 
                     </div>
-                            }
+                            @*}*@
                             <button class="btn btn-dark dropdown" style="float:right;" onclick="darkMode()">Dark Mode</button>
                 </div>
                 </li>

@@ -1,0 +1,122 @@
+﻿@using GLMSMiddlewareAPI.Controllers
+@model List<FileModel>
+@{
+    ViewBag.Title = "Log Viewer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section css_style{
+    <style type="text/css">
+        a:hover {
+            text-decoration: none;
+        }
+
+        span.empty {
+            font-style: italic;
+            color: #d9d6d6;
+        }
+
+        thead tr, button {
+            background-color: #892dff !important;
+            color: white !important;
+            letter-spacing: 0.7px !important;
+        }
+
+        input[type="email"] {
+            padding: 15px;
+            border: none;
+            border-bottom: 2px solid #892dff;
+            width: 100% !important;
+            border-radius: 10px;
+        }
+
+            input[type="email"]:focus {
+                outline: none !important;
+                background-color: #f2f1f1;
+            }
+    </style>
+    <link href="~/scss/listLayout.min.css" rel="stylesheet" />
+}
+
+<div class="container">
+    <div class="text-center bg-white pt-4">
+        <h4>Log Viewer</h4>
+        <div class="col-sm-4 mt-3 mb-3">
+            <input type="date" value=@DateTime.Now.ToString("yyyy-MM-dd") id="logdate" class="form-control inputfile edittable" onclick="" />
+        </div>
+        <hr class="mt-1" />
+    </div>
+
+    <div class="table-responsive">
+        <table class="table text-center table-condensed table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Folder Name</th>
+                    <th scope="col">File Path</th>
+                </tr>
+            </thead>
+            <tbody id="tBody">
+                @Html.Partial("~/Views/LogViewer/PartialView/_Index.cshtml", Model)
+            </tbody>
+        </table>
+    </div>
+    <div id="LogViewer" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 class="text-center text-uppercase">Log Viewer<hr class="border" /></h5>
+                    <p id="paraLogViewer"></p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/js/whatsap-loader.js" data-style-dir="/scss/loader.min.css"></script>
+    <script src="~/Scripts/Repository.js"></script>
+
+    <script>
+
+        $(function () {
+            $("#logdate").change(function () {
+                var todaysDate = document.getElementById("logdate").value;
+                ajaxCall('/LogViewer/GetFiles', { todaysDate }, function (result) {
+                    debugger;
+                    if (result.Response) {
+                        console.log('success');
+                        $('#tBody').html(result.View);
+
+                    } else {
+                        $('#tBody').html('');
+                        showNotification(result.message, 'danger');
+                    }
+                }, 'GET');
+            });
+
+        });
+
+        function viewLog(id) {
+            debugger;
+            let filePath = id.dataset["filepath"];
+            url = "/LogViewer/ViewLog";
+            ajaxCall(url, { filePath }, function (result) {
+                debugger;
+                if (result.Status) {
+                    $('#paraLogViewer').text(result.View);
+                    $("#LogViewer").modal('toggle');
+                }
+                else {
+                    showNotification("failed", 'danger');
+                }
+            }, "GET");
+
+        }
+    </script>
+
+}
+
