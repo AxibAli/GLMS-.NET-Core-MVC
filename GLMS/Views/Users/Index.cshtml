@@ -5,7 +5,17 @@
 
 @*no need for site.css made a custom css file Named as "glms_styles.css" it will be use through out the whole project add custom css code in this file.*@
 <link href="~/css/glms_styles.css" rel="stylesheet" asp-append-version="true" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/css/overallstyles.css" rel="stylesheet" />
+
+<div class="right-div">
+ <div id="main">
 <h1>User List</h1>
 <br />
 <table class="table table-striped" id="userTable">
@@ -74,8 +84,9 @@
 <a asp-controller="Home" asp-action="Index" style="width:100px" class="btn btn-primary">
     Back
 </a>
-
-  <!--Pagination Start-->
+</div>
+</div>
+ @* <!--Pagination Start-->
     <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item">
@@ -93,7 +104,8 @@
     </li>
   </ul>
 </nav>    
- <!--Pagination End-->
+ <!--Pagination End-->*@
+
  <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/glms.js"></script> @* no need for site.css made a custom css file Named as "glms_styles.css" it will be use through out the whole project add custom css code in this file.*@

@@ -1,4 +1,4 @@
-﻿@{
+﻿@*@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section css_style{
@@ -150,10 +150,11 @@
 @section scripts{
     <script src="~/Content/js/whatsap-loader.js" data-style-dir="/scss/loader.min.css"></script>
     @*<script src="~/Scripts/al"></script>*@
-    
+@*    
     <script src="~/Scripts/jquery.twbsPagination.js"></script>
     <script src="~/Scripts/Repository.js"></script>
     @RenderSection("pageScript", required: true)
     <script src="~/Scripts/listParentScripts.js"></script>
     @RenderSection("lastScript",required:false)
 }
+*@

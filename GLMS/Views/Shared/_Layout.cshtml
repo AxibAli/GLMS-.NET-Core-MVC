@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser<int>> SignInManager
 @inject UserManager<IdentityUser<int>> UserManager
-<!DOCTYPE html>
+@*<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -13,13 +13,29 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
     @*no need for site.css made a custom css file Named as "glms_styles.css" it will be use through out the whole project add custom css code in this file.*@
-    <link href="~/css/glms_styles.css" rel="stylesheet" asp-append-version="true" />
+@*<link href="~/css/glms_styles.css" rel="stylesheet" asp-append-version="true" />
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/bootstrap-notify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/bootstrap-notify.min.js"></script>*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    @*<link href="~/css/overallstyles.css" rel="stylesheet" />*@
+    <title>@ViewData["Title"] - GLMS</title>
 </head>
-<body>
+@*<body>
     <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GLMS</a>
     <header>
 
@@ -35,7 +51,7 @@
 
                 <li class="nav-item">
    
-                        <div id="mySidebar" class="sidebar" style="background:linear-gradient(to bottom, #000000 6%, #ffffff 108%)">
+                    <div id="mySidebar" class="sidebar" style="background:linear-gradient(to bottom, #000000 6%, #ffffff 108%)">
                     <a class="closebtn" onclick="closeNav()">×</a>
                     <a class="nav-link text-white" style="font-size:14px;" asp-controller="Home" asp-action="Index">Home</a>
                     <a class="nav-link text-white" style="font-size:14px;" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -43,7 +59,7 @@
 @*
                 @if (User.IsInRole("superAdmin"))*@
                             {
-                    <div class="dropdown">
+                  @*  <div class="dropdown">
                         <a class="btn btn-secondary text-white dropdown-toggle" style="font-size:14px;" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-gear"></i>Settings
                         </a>
@@ -64,7 +80,7 @@
                         
                                 
                     </div>
-                            @*}*@
+                            }
                             <button class="btn btn-dark dropdown" style="float:right;" onclick="darkMode()">Dark Mode</button>
                 </div>
                 </li>
@@ -76,8 +92,180 @@
                 <!--Side Bar End-->
                 
             }
-            </ul>
-            @Html.Partial("_LoginPartial")
+            </ul>*@
+
+<!--Alternative Design for GLMS-->
+<body>
+
+    <section>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="left-div">
+                <br>
+                <h2 class="logo">*logo* -<span style="font-weight: 100; "> GLMS</span></h2>
+                <hr class="hr" />
+                <ul class="nav">
+                    <li><a asp-controller="Home" asp-action="Index"><i class="fa fa-th-large"></i> Home</a></li>
+                    <li><a asp-controller="Roles" asp-action="Index"><i class="fa fa-user"></i> User Control</a></li>
+                    <li ><a asp-controller="Settings" asp-action="Index"><i class="fa fa-key"></i> Access Request</a></li>
+                    <li><a href=""><i class="fa fa-desktop"></i> Admin</a></li>
+                    <li><a href=""><i class="fa fa-gear"></i> Settings</a></li>
+                    <li><a asp-controller="Home" asp-action="Privacy"><i class="fa fa-bullhorn"></i> Support & Privacy</a></li>
+                    <li><a href=""><i class="fa fa-power-off"></i> Quit</a></li>
+                </ul>
+                <br><br>
+                <img src="image/s.png" class="support">
+            </div>
+
+            <div class="right-div">
+
+
+
+
+                <div id="main">
+                    <br>
+                    <div class="head">
+                        <div class="col-div-6">
+                            <p class="nav"> Dashboard</p>
+                        </div>
+
+                        <div class="col-div-6">
+
+
+                            <div class="profile">
+
+                                <img src="image/user.png" class="pro-img" />
+                                <p>Manoj Adhikari <i class="fa fa-ellipsis-v dots" aria-hidden="true"></i></p>
+                                <div class="profile-div">
+                                    <p><i class="fa fa-user"></i>   Profile</p>
+                                    <p><i class="fa fa-cogs"></i>   Settings</p>
+                                    <p><i class="fa fa-power-off"></i><form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                        </form>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <br /><br /><br />
+
+                    <div class="col-div-4-1">
+                        <div class="box">
+                            <p class="head-1">Sales</p>
+                            <p class="number">67343</p>
+                            <p class="percent"><i class="fa fa-long-arrow-up" aria-hidden="true"></i> 5.674% <span>Since Last Months</span></p>
+                            <i class="fa fa-line-chart box-icon"></i>
+                        </div>
+                    </div>
+                    <div class="col-div-4-1">
+                        <div class="box">
+                            <p class="head-1">purchases</p>
+                            <p class="number">2343</p>
+                            <p class="percent" style="color:red!important"><i class="fa fa-long-arrow-down" aria-hidden="true"></i> 5.64% <span>Since Last Months</span></p>
+                            <i class="fa fa-circle-o-notch box-icon"></i>
+                        </div>
+                    </div>
+                    <div class="col-div-4-1">
+                        <div class="box">
+                            <p class="head-1">orders</p>
+                            <p class="number">35343</p>
+                            <p class="percent"><i class="fa fa-long-arrow-up" aria-hidden="true"></i> 5.674% <span>Since Last Months</span></p>
+                            <i class="fa fa-shopping-bag box-icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <br /><br />
+
+
+                    <div class="col-div-4-1">
+                        <div class="box-1">
+                            <div class="content-box-1">
+                                <p class="head-1">Overview</p>
+                                <br />
+                                <div class="m-box active1">
+                                    <p>Member Profit<br /><span class="no-1">Last Months</span></p>
+                                    <span class="no">+2343</span>
+                                </div>
+
+                                <div class="m-box">
+                                    <p>Member Profit<br /><span class="no-1">Last Months</span></p>
+                                    <span class="no">+2343</span>
+                                </div>
+
+                                <div class="m-box">
+                                    <p>Member Profit<br /><span class="no-1">Last Months</span></p>
+                                    <span class="no">+2343</span>
+                                </div>
+
+                                <div class="m-box">
+                                    <p>Member Profit<br /><span class="no-1">Last Months</span></p>
+                                    <span class="no">+2343</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-div-4-1">
+                        <div class="box-1">
+                            <div class="content-box-1">
+                                <p class="head-1">Total Sale <span>View All</span></p>
+
+                                <div class="circle-wrap">
+                                    <div class="circle">
+                                        <div class="mask full">
+                                            <div class="fill"></div>
+                                        </div>
+                                        <div class="mask half">
+                                            <div class="fill"></div>
+                                        </div>
+                                        <div class="inside-circle"> 70% </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-div-4-1">
+                        <div class="box-1">
+                            <div class="content-box-1">
+                                <p class="head-1">Acitivity <span>View All</span></p>
+                                <br />
+                                <p class="act-p"><i class="fa fa-circle"></i> Lorem Ipsum is simply dummy text of the     printing and typesetting industry. </p>
+                                <p class="act-p"><i class="fa fa-circle" style="color:red!important;"></i> Lorem Ipsum is simply dummy text of the     printing and typesetting industry. </p>
+                                <p class="act-p"><i class="fa fa-circle" style="color:green!important;"></i> Lorem Ipsum is simply dummy text of the     printing and typesetting industry. </p>
+                                <p class="act-p"><i class="fa fa-circle"></i> Lorem Ipsum is simply dummy text of the     printing and typesetting industry. </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+       
+            </div>
+            
+        }
+        @Html.Partial("_LoginPartial")
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2022 - GLMS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+    </section>
+    <!--End-->
+            
          @* ALTERNATIVE DESIGN   
              
          <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
@@ -141,7 +329,7 @@
                 </ul>
             </div>
   
-            <partial name="_LoginPartial" />*@
+            <partial name="_LoginPartial" />
         </nav>
     </header>
 
@@ -177,22 +365,34 @@
 
    
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-    
    
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - GLMS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+<script>
+$(document).ready(function(){
+  $(".profile p").click(function(){
+    $(".profile-div").toggle();
+
+  });
+  $(".noti-icon").click(function(){
+    $(".notification-div").toggle();
+  });
+});
+</script>
+    <script type="text/javascript">
+        $('li').click(function () {
+            $('li').removeClass("active");
+            $(this).addClass("active");
+        });
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/bootstrap-notify.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/glms.js"></script> @* no need for site.css made a custom css file Named as "glms_styles.css" it will be use through out the whole project add custom css code in this file.*@
+    <script src="~/js/glms.js"></script> 
+    @* no need for site.css made a custom css file Named as "glms_styles.css" it will be use through out the whole project add custom css code in this file.*@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-</html>
+</html>*
